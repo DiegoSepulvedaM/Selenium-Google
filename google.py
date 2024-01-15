@@ -13,6 +13,7 @@ options = Options()
 options.add_experimental_option("detach", True)
 options.add_argument("--window-position=0,0")
 options.add_argument("--headless")
+options.add_argument("--no-sandbox")  # Agrega la opción --no-sandbox
 
 # Configura el servicio de Chrome con la ruta al chromedriver
 chrome_service = ChromeService(executable_path=chromedriver_path)
