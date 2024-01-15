@@ -4,10 +4,10 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # Establece la ruta de chromedriver
-chromedriver_path = "/usr/bin/chromedriver"
+driver = webdriver.Chrome('/usr/bin/chromedriver')
 
 # Configura el servicio de Chrome con la ruta al chromedriver
-chrome_service = webdriver.ChromeService(executable_path=chromedriver_path)
+chrome_service = webdriver.ChromeService(executable_path=driver)
 
 # Configura el webdriver utilizando el servicio de Chrome
 driver = webdriver.Chrome(service=chrome_service)
