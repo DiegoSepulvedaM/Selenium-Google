@@ -4,19 +4,14 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
 
-# Rutas a los ejecutables de Chrome y Chromedriver
-chrome_binary_path = "/usr/bin/google-chrome"
-chromedriver_path = "/usr/bin/chromedriver"
-
-# Configuración de opciones de Chrome
 chrome_options = Options()
-chrome_options.binary_location = chrome_binary_path
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+# chrome_options.add_argument('--disable-gpu')  # Esta opción solo es aplicable para sistemas operativos Windows
+chrome_options.binary_location = '/usr/bin/google-chrome'  # Ajusta la ruta según tu entorno
 
-# Configuración del servicio de Chromedriver
-chrome_service = ChromeService(executable_path=chromedriver_path)
-
-# Configuración del WebDriver de Selenium
-driver = webdriver.Chrome(options=chrome_options, service=chrome_service)
+chromedriver_path = '/usr/bin/chromedriver'  # Ajusta la ruta según tu entorno
+driver = webdriver.Chrome(options=chrome_options, executable_path=chromedriver_path)
 
 try:
     # Acciones del script aquí...
