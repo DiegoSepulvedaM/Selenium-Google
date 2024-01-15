@@ -5,8 +5,8 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 # Establece la ruta de chromedriver
-chromedriver_path = "/usr/bin/chromedriver"
-chrome_binary_path = "/usr/bin/google-chrome"
+chromedriver_path = "/usr/local/bin/chromedriver"
+chrome_binary_path = "/usr/local/bin/google-chrome"
 
 # Configura las opciones de Chrome
 options = Options()
