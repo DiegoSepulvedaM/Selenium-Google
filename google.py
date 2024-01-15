@@ -1,19 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
-
-
 
 # Establece la ruta de chromedriver
 chromedriver_path = "/usr/bin/chromedriver"
 chrome_binary_path = "/usr/bin/google-chrome"
 
-# Configura el servicio de Chrome con la ruta al chromedriver
-chrome_service = webdriver.ChromeService(executable_path=chromedriver_path)
+# Configura las opciones de Chrome
+chrome_options = Options()
+chrome_options.binary_location = chrome_binary_path
 
-# Configura el webdriver utilizando el servicio de Chrome
-driver = webdriver.Chrome(service=chrome_service)
+# Configura el servicio de Chrome con la ruta al chromedriver
+chrome_service = ChromeService(executable_path=chromedriver_path)
+
+# Configura el webdriver utilizando el servicio de Chrome y las opciones
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 try:
     # Realiza la búsqueda en Google
@@ -30,5 +33,4 @@ try:
 finally:
     # Cierra el navegador al finalizar
     driver.quit()
-
 
