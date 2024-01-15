@@ -1,30 +1,41 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
 
-chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-# chrome_options.add_argument('--disable-gpu')  # Esta opción solo es aplicable para sistemas operativos Windows
-chrome_options.binary_location = '/usr/bin/google-chrome'  # Ajusta la ruta según tu entorno
+# Establece la ruta de chromedriver
+chromedriver_path = "/usr/local/bin/chromedriver"
+chrome_binary_path = "/usr/local/bin/google-chrome"
 
-chromedriver_path = '/usr/bin/chromedriver'  # Ajusta la ruta según tu entorno
-driver = webdriver.Chrome(options=chrome_options, executable_path=chromedriver_path)
+# Configura las opciones de Chrome
+options = Options()
+options.add_experimental_option("detach", True)
+options.add_argument("--window-position=0,0")
+options.add_argument("--headless")
+
+# Configura el servicio de Chrome con la ruta al chromedriver
+chrome_service = ChromeService(executable_path=chromedriver_path)
+
+# Configura el webdriver utilizando el servicio de Chrome y las opciones
+driver = webdriver.Chrome(service=chrome_service, options=options)
 
 try:
-    # Acciones del script aquí...
+    # Realiza la búsqueda en Google
     driver.get("https://www.google.com")
     search_box = driver.find_element("name", "q")
     search_box.send_keys("Jenkins")
     search_box.send_keys(Keys.RETURN)
 
-    # Esperar un momento para ver los resultados
+    # Espera un momento para ver los resultados
     time.sleep(2)
 
-    # Puedes agregar más acciones aquí...
+    # Captura un screenshot para verificar el resultado (opcional)
+    driver.save_screenshot("google_search_results.png")
 
 finally:
-    # Cerrar el navegador al finalizar
+    # Cierra el navegador al finalizar
     driver.quit()
+
+
+
