@@ -9,7 +9,7 @@ chromedriver_path = "/usr/bin/chromedriver"
 chrome_binary_path = "/usr/bin/google-chrome"
 
 # Configura las opciones de Chrome
-chrome_options = Options()
+chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = chrome_binary_path
 
 # Configura el servicio de Chrome con la ruta al chromedriver
