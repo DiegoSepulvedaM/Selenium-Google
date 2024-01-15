@@ -25,7 +25,7 @@ try:
     # Realiza la búsqueda en Google
     driver.get("https://www.google.com")
     search_box = driver.find_element("name", "q")
-    search_box.send_keys("Selenium")
+    search_box.send_keys("Diego")
     search_box.send_keys(Keys.RETURN)
 
     # Espera un momento para ver los resultados
