@@ -16,7 +16,7 @@ chrome_options.binary_location = chrome_binary_path
 chrome_service = ChromeService(executable_path=chromedriver_path)
 
 # Configura el webdriver utilizando el servicio de Chrome y las opciones
-driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options, service=chrome_service)
 
 try:
     # Realiza la búsqueda en Google
@@ -33,4 +33,3 @@ try:
 finally:
     # Cierra el navegador al finalizar
     driver.quit()
-
