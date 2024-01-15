@@ -3,29 +3,37 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.keys import Keys
 import time
 
-# Establece la ruta de chromedriver
-chromedriver_path = "/usr/bin/chromedriver"
+def test_google_search():
+    # Ruta al chromedriver en el contenedor
+    chromedriver_path = "/usr/local/bin/chromedriver"
+    
+    # Configurar el servicio de Chrome con la ruta al chromedriver
+    chrome_service = ChromeService(executable_path=chromedriver_path)
+    
+    # Configurar el webdriver utilizando el servicio de Chrome
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')  # Opcional: ejecutar en modo sin cabeza (headless)
+    
+    # Pasar el servicio y las opciones al webdriver
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
-# Configura el servicio de Chrome con la ruta al chromedriver
-chrome_service = webdriver.ChromeService(executable_path=chromedriver_path)
+    try:
+        # Realizar la búsqueda en Google
+        driver.get("https://www.google.com")
+        search_box = driver.find_element("name", "q")
+        search_box.send_keys("Jenkins")
+        search_box.send_keys(Keys.RETURN)
 
-# Configura el webdriver utilizando el servicio de Chrome
-driver = webdriver.Chrome(service=chrome_service)
+        # Esperar un momento para ver los resultados
+        time.sleep(2)
 
-try:
-    # Realiza la búsqueda en Google
-    driver.get("https://www.google.com")
-    search_box = driver.find_element("name", "q")
-    search_box.send_keys("Jenkins")
-    search_box.send_keys(Keys.RETURN)
+        # Capturar un screenshot para verificar el resultado (opcional)
+        driver.save_screenshot("google_search_results.png")
+    finally:
+        # Cerrar el navegador al finalizar
+        driver.quit()
 
-    # Espera un momento para ver los resultados
-    time.sleep(2)
-
-    # Captura un screenshot para verificar el resultado (opcional)
-    driver.save_screenshot("google_search_results.png")
-finally:
-    # Cierra el navegador al finalizar
-    driver.quit()
+# Llamar a la función de prueba
+test_google_search()
 
 
