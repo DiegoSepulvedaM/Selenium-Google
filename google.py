@@ -15,8 +15,8 @@ chrome_options.binary_location = chrome_binary_path
 # Configura el servicio de Chrome con la ruta al chromedriver
 chrome_service = ChromeService(executable_path=chromedriver_path)
 
-# Configura el webdriver utilizando el servicio de Chrome y las opciones
-driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options, service=chrome_service)
+# Configura el webdriver utilizando las opciones y el servicio de Chrome
+driver = webdriver.Chrome(options=chrome_options, service=chrome_service)
 
 try:
     # Realiza la búsqueda en Google
